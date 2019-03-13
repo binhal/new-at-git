@@ -30,10 +30,10 @@ void initSDL(SDL_Window* &window, SDL_Renderer* &renderer)
 
 
     //Khi thông thường chạy với môi trường bình thường ở nhà
-    //renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
-     //                                         SDL_RENDERER_PRESENTVSYNC);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
+                                              SDL_RENDERER_PRESENTVSYNC);
     //Khi chạy ở máy thực hành WinXP ở trường (máy ảo)
-    renderer = SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(window));
+    //renderer = SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(window));
     if (renderer == nullptr) logSDLError(std::cout, "CreateRenderer", true);
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -81,7 +81,11 @@ int main(int argc, char* argv[])
     filled_rect.h = 100;
     SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // green
     SDL_RenderFillRect(renderer, &filled_rect);
-    SDL_UpdateWindowSurface(window);
+    //Khi thông thường chạy với môi trường bình thường ở nhà
+    SDL_RenderPresent(renderer);
+   //Khi chạy ở máy thực hành WinXP ở trường (máy ảo)
+   //SDL_UpdateWindowSurface(window);
+
     waitUntilKeyPressed();
     quitSDL(window, renderer);
     return 0;
