@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
     // Your drawing code here
     // use SDL_RenderPresent(renderer) to show it
-    SDL_RenderClear(renderer);
+    //SDL_RenderClear(renderer);
 
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);   // white
     SDL_RenderDrawPoint(renderer, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
