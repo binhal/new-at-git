@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1552742869 source:c:\users\binh fantasia\desktop\git_exercise\chay_vuot_rao\main.cpp
-	<iostream>
-	<conio.h>
-	<thread>
-	<chrono>
-	<stdlib.h>
-

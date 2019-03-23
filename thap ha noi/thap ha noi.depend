@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1552797073 source:c:\users\binh fantasia\desktop\git_exercise\thap ha noi\main.cpp
+	<iostream>
+	<SDL.h>
+
+1552808335 source:c:\users\binh fantasia\desktop\git_exercise\thap ha noi\thap_ha_noi.cpp
+	<iostream>
+	<SDL.h>
+
