@@ -1,20 +1,20 @@
 # depslib dependency file v1.0
-1553348740 source:c:\users\binh fantasia\desktop\git_exercise\run\run.cpp
+1554477033 source:c:\users\binh fantasia\desktop\git_exercise\run\run.cpp
 	<iostream>
 	<SDL.h>
 	"SDL_utils.h"
-	"texture.h"
+	<SDL_image.h>
 
 1490343497 c:\users\binh fantasia\desktop\git_exercise\run\sdl_utils.h
 	<iostream>
 	<SDL.h>
 
-1553346714 source:c:\users\binh fantasia\desktop\git_exercise\run\sdl_utils.cpp
+1554084831 source:c:\users\binh fantasia\desktop\git_exercise\run\sdl_utils.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 
-1553330009 c:\users\binh fantasia\desktop\git_exercise\run\texture.h
+1554082319 c:\users\binh fantasia\desktop\git_exercise\run\texture.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

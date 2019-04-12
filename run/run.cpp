@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SDL.h>
 #include "SDL_utils.h"
-#include"texture.h"
+#include<SDL_image.h>
 using namespace std;
 
 const int SCREEN_WIDTH = 800;
@@ -16,117 +16,124 @@ const char WINDOW_TITLE[] = "Game in SDL";
 class game
 {
 private:
-    float fBirdPosition = 0.0f;
-	float fBirdVelocity = 0.0f;
-	float fBirdAcceleration = 0.0f;
+    int scrollingOffset = 0;
+    int mWidth = 0;
+    int mHeight = 0;
+    float Position = 880.0f;
+	float Velocity = 0.0f;
+	float Acceleration = 0.0f;
 	float fGravity = 100.0f;
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_Texture* texture;
+    SDL_Texture* texture1;
 
-    SDL_Rect filled_rect;
-    float fElapsedTime = 0.2f;
+    SDL_Rect catus_rect;
+
+    SDL_Rect dino_rect;
+    float fElapsedTime = 0.016f;
+    bool isRunning;
+
     public:
     SDL_Texture* loadTexture( string path );
 
-    bool createImage( SDL_Texture* texture );
+    bool createImage( SDL_Texture* texture, int x, int y);
 
-    void refreshScreen(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& filled_rect)
+    void render( int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE );
+
+
+    void render(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& dino_rect)
     {
 
-    // Đặt màu vẽ thành xanh lam (blue), xoá màn hình về màu xanh lam.
     SDL_SetRenderDrawColor(renderer,255 , 0, 255, 255);   // blue
     SDL_RenderClear(renderer);
-     createImage(  texture );
-    // Đặt màu vẽ về trắng và vẽ hình chữ nhật
-    SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);   // white
-    SDL_RenderFillRect(renderer, &filled_rect);
-    SDL_RenderDrawLine( renderer, 0, SCREEN_HEIGHT / 2 + 12,SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 12);
-    // Dùng lệnh hiển thị (đưa) hình đã vẽ ra mành hình
+    render( scrollingOffset, 0 );
 
 
-   //Khi thông thường chạy với môi trường bình thường ở nhà
+    render( scrollingOffset + mWidth, 0 );
+
+    SDL_RenderCopy( renderer, texture1, NULL, &dino_rect );
+    SDL_RenderDrawLine(renderer,0, SCREEN_HEIGHT/2 + 160, SCREEN_WIDTH, SCREEN_HEIGHT/2 + 160);
+
+    //Khi thông thường chạy với môi trường bình thường ở nhà
     SDL_RenderPresent(renderer);
-   //Khi chạy ở máy thực hành WinXP ở trường (máy ảo)
-   //SDL_UpdateWindowSurface(window);
+    //Khi chạy ở máy thực hành WinXP ở trường (máy ảo)
+    //SDL_UpdateWindowSurface(window);
 }
 
-    bool create()
+    void create()
     {
     initSDL(window, renderer, SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
-    texture = loadTexture("C:/Users/Binh Fantasia/Downloads/31_scrolling_backgrounds/bg.png");
-    filled_rect.x = SCREEN_WIDTH / 6;
-    filled_rect.y = SCREEN_HEIGHT / 2;
-    filled_rect.w = 16;
-    filled_rect.h = 12;
+    texture = loadTexture("PHOTO/bg.png");
+    texture1 = loadTexture("PHOTO/dino.jpg");
+    dino_rect.x = SCREEN_WIDTH / 10;
+    dino_rect.y = catus_rect.y = 0;
+    dino_rect.w = catus_rect.w = 80;
+    dino_rect.h = catus_rect.h = 80;
 
-    return true;
+    catus_rect.x  = 800;
+
+
     }
     bool update()
     {
-
-
-    // Định nghĩa toạ độ ban đầu và kích cỡ hình chữ nhật
-
-
-    // Bước nhảy mỗi khi dịch chuyển
-    int step = 4;
-    // Xoá toàn bộ màn hình và vẽ
-    refreshScreen(window, renderer, filled_rect);
     SDL_Event e;
     while (1) {
-        // Đợi 10 mili giây
-        //SDL_Delay(10);
-        fBirdVelocity += fBirdAcceleration * fElapsedTime;
-			fBirdPosition += fBirdVelocity * fElapsedTime;
-			if(fBirdPosition  > SCREEN_HEIGHT / 2) fBirdPosition = SCREEN_HEIGHT / 2;
-            filled_rect.y = fBirdPosition;
+        Acceleration += fGravity * fElapsedTime;
+        Velocity += Acceleration * fElapsedTime;
+        Position += Velocity * fElapsedTime;
+        if(Position  > SCREEN_HEIGHT / 2 + 80) Position = SCREEN_HEIGHT / 2 + 80;
+        dino_rect.y = Position;
 
-             // Nếu sự kiện là kết thúc (như đóng cửa sổ) thì thoát khỏi vòng lặp
+        SDL_PollEvent(&e) ;
         if (e.type == SDL_QUIT) break;
+        if (e.type == SDL_KEYDOWN && dino_rect.y == SCREEN_HEIGHT / 2 + 80) {
+        	Acceleration = 0.0f;
+            Velocity = -fGravity ;
 
-        // Nếu không có sự kiện gì thì tiếp tục trở về đầu vòng lặp
-        if ( SDL_PollEvent(&e) == 0) continue;
-
-
-
-        // Nếu có một phím được nhấn, thì xét phím đó là gì để xử lý tiếp
-        if (e.type == SDL_KEYDOWN ) {
-                //&& e.key.keysym.sym == SDLK_UP
-        	fBirdAcceleration = 0.0f;
-				fBirdVelocity = -fGravity / 4.0f;
-				fBirdPosition -= 100.0f;
         }
-        else
-            fBirdAcceleration += fGravity * fElapsedTime;
-
-            fBirdVelocity += fBirdAcceleration * fElapsedTime;
-			fBirdPosition += fBirdVelocity * fElapsedTime;
-			if(fBirdPosition  > SCREEN_HEIGHT / 2) fBirdPosition = SCREEN_HEIGHT / 2;
-            filled_rect.y = fBirdPosition;
-
-            // Xoá toàn bộ màn hình và vẽ lại
-            refreshScreen(window, renderer, filled_rect);
 
 
+
+        --scrollingOffset;
+				if( scrollingOffset < - mWidth )
+				{
+					scrollingOffset = 0;
+				}
+
+        render(window, renderer, dino_rect);
     }
     return true;
     }
-    bool quit()
+
+    void free(SDL_Texture* mTexture)
+{
+	//Free texture if it exists
+	if( mTexture != NULL )
+	{
+		SDL_DestroyTexture( mTexture );
+		mTexture = NULL;
+		mWidth = 0;
+		mHeight = 0;
+	}
+}
+
+
+    void quit()
     {
-        SDL_Texture* texture = NULL;
-        SDL_DestroyTexture(texture);
+        free(texture);
         quitSDL(window, renderer);
     }
 };
 
-void refreshScreen(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& filled_rect);
+void render(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& dino_rect);
 
 int main(int argc, char* argv[])
 {
     // Your code here
     game run;
     run.create();
+
     run.update();
 
     run.quit();
@@ -148,23 +155,40 @@ SDL_Texture* game::loadTexture( string path )
         if( newTexture == NULL )
             cout << "Unable to create texture from " << path << " SDL Error: "
                  << SDL_GetError() << endl;
+            mWidth = 800;
+			mHeight = 600;
         SDL_FreeSurface( loadedSurface );
     }
     return newTexture;
 }
 
 
-bool game::createImage( SDL_Texture* texture )
+bool game::createImage( SDL_Texture* texture, int x, int y)
 {
     if( texture == NULL ) return false;
-    SDL_RenderCopy( renderer, texture, NULL, NULL );
+    catus_rect.x = x;
+    catus_rect.y = y;
+
+    SDL_RenderCopy( renderer, texture, &dino_rect, catus_rect );
     return true;
 }
 
+void game::render( int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip )
+{
+	//Set rendering space and render to screen
+	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
 
+	//Set clip rendering dimensions
+	if( clip != NULL )
+	{
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
+	}
 
+	//Render to screen
+	SDL_RenderCopyEx( renderer, texture, clip, &renderQuad, angle, center, flip );
 
-
+}
 
 
 
