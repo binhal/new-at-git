@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include<SDL_image.h>
+#include<SDL_ttf.h>
 
 //*****************************************************
 // Các hàm chung về khởi tạo và huỷ SDL
@@ -15,8 +16,12 @@ void logSDLError(std::ostream& os,
 }
 
 void initSDL(SDL_Window* &window, SDL_Renderer* &renderer,
-	int screenWidth, int screenHeight, const char* windowTitle)
+	int screenWidth, int screenHeight, const char* windowTitle )
 {
+    if( TTF_Init() == -1 )
+				{
+					printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+				}
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         logSDLError(std::cout, "SDL_Init", true);
 

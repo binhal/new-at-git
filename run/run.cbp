@@ -31,11 +31,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="GameObject.h" />
 		<Unit filename="SDL_utils.cpp" />
 		<Unit filename="SDL_utils.h" />
 		<Unit filename="run.cpp" />
-		<Unit filename="texture.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
