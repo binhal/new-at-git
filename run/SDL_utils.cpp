@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include<SDL_image.h>
 #include<SDL_ttf.h>
+#include<SDL_mixer.h>
 
 //*****************************************************
 // Các hàm chung về khởi tạo và huỷ SDL
@@ -18,6 +19,10 @@ void logSDLError(std::ostream& os,
 void initSDL(SDL_Window* &window, SDL_Renderer* &renderer,
 	int screenWidth, int screenHeight, const char* windowTitle )
 {
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+                {
+                    printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+                }
     if( TTF_Init() == -1 )
 				{
 					printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
@@ -46,10 +51,10 @@ void initSDL(SDL_Window* &window, SDL_Renderer* &renderer,
 
 void quitSDL(SDL_Window* window, SDL_Renderer* renderer)
 {
-
-
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+	Mix_Quit();
+    IMG_Quit();
 	SDL_Quit();
 }
 

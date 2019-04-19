@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1555469692 source:c:\users\binh fantasia\desktop\git_exercise\run\run.cpp
+1555587139 source:c:\users\binh fantasia\desktop\git_exercise\run\run.cpp
 	<iostream>
 	<SDL.h>
 	"SDL_utils.h"
@@ -8,16 +8,19 @@
 	<sstream>
 	<chrono>
 	<time.h>
+	<SDL_mixer.h>
+	"game.h"
 
 1490343497 c:\users\binh fantasia\desktop\git_exercise\run\sdl_utils.h
 	<iostream>
 	<SDL.h>
 
-1555421521 source:c:\users\binh fantasia\desktop\git_exercise\run\sdl_utils.cpp
+1555587139 source:c:\users\binh fantasia\desktop\git_exercise\run\sdl_utils.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
+	<SDL_mixer.h>
 
 1554082319 c:\users\binh fantasia\desktop\git_exercise\run\texture.h
 	<iostream>
@@ -25,4 +28,26 @@
 	<SDL_image.h>
 
 1553330009 source:c:\users\binh fantasia\desktop\git_exercise\run\texture.cpp
+
+1555590496 c:\users\binh fantasia\desktop\git_exercise\run\game.h
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+	<sstream>
+	<chrono>
+	<time.h>
+
+1555585149 source:c:\users\binh fantasia\desktop\git_exercise\run\game.cpp
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	"game.h"
 
