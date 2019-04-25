@@ -1,0 +1,107 @@
+# depslib dependency file v1.0
+1555587139 source:c:\users\binh fantasia\desktop\git_exercise\run\run.cpp
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	<SDL_mixer.h>
+	"game.h"
+
+1490343497 c:\users\binh fantasia\desktop\git_exercise\run\sdl_utils.h
+	<iostream>
+	<SDL.h>
+
+1555587139 source:c:\users\binh fantasia\desktop\git_exercise\run\sdl_utils.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+
+1554082319 c:\users\binh fantasia\desktop\git_exercise\run\texture.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1553330009 source:c:\users\binh fantasia\desktop\git_exercise\run\texture.cpp
+
+1555590496 c:\users\binh fantasia\desktop\git_exercise\run\game.h
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+	<sstream>
+	<chrono>
+	<time.h>
+
+1555585149 source:c:\users\binh fantasia\desktop\git_exercise\run\game.cpp
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	"game.h"
+
+1556202374 source:f:\run\game.cpp
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	"game.h"
+	<vector>
+
+1490343497 f:\run\sdl_utils.h
+	<iostream>
+	<SDL.h>
+
+1556202440 f:\run\game.h
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	"Obstacle.h"
+
+1556113020 source:f:\run\run.cpp
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	<SDL_mixer.h>
+	"game.h"
+
+1555590496 source:f:\run\sdl_utils.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+
+1556201100 source:f:\run\obstacle.cpp
+	"Obstacle.h"
+
+1556202057 f:\run\obstacle.h
+	<vector>
+	<SDL.h>
+
