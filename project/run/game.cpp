@@ -8,13 +8,12 @@
 #include<time.h>
 #include"game.h"
 #include<vector>
+
 using namespace std;
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
-const char WINDOW_TITLE[] = "Game in SDL";
-const int MAX_OBSTACLE_HEIGHT = 100;
-
+const char WINDOW_TITLE[] = "Running Dino";
 
 string game::int_to_string(int n)
 {
@@ -158,11 +157,6 @@ void game::create()
     dino_rect.y =  SCREEN_HEIGHT / 2 + 80;
     dino_rect.w =  80;
     dino_rect.h  = 80;
-//    catus_rect.h = 50;
-//    catus_rect.y = SCREEN_HEIGHT / 2 + 80 + 80 - catus_rect.h ;
-//    catus_rect.w = 40;
-//    catus_rect.x  = SCREEN_WIDTH;
-
 }
 
 void game::update()
@@ -173,7 +167,7 @@ void game::update()
             int frameStart = SDL_GetTicks();
             if(hasCollided == true ){
                 for(int i = 0; i < catus.size();i++) delete catus[i];
-                catus.erase(catus.begin(),catus.end());
+                catus.clear();
                 score = 0;
                 speed = 5;
                 num = 0;
@@ -183,10 +177,10 @@ void game::update()
                 dino_rect.y =  SCREEN_HEIGHT / 2 + 80;
                 draw(window, renderer);
                 SDL_WaitEvent(&e);
-
                 if (e.type == SDL_QUIT) break;
             if(e.type == SDL_KEYDOWN ) {isRunning = true;
             hasCollided = false;}
+            SDL_Delay(1000);
             }
 
             if(isRunning == false)
@@ -257,16 +251,16 @@ void game::update()
 
 }
 
-  bool game::if_collided(SDL_Rect a, SDL_Rect obstacle)
-  {
-      if(a.x + a.w  >= obstacle.x
-                        && a.y >= obstacle.y - 50
-                            && a.x - 10 <= obstacle.x + obstacle.w) return true;
-                            else return false;
-  }
+bool game::if_collided(SDL_Rect dino, SDL_Rect obstacle)
+{
+    if(dino.x + dino.w  > obstacle.x
+                          && dino.y > obstacle.y - obstacle.h
+                            && dino.x  < obstacle.x + obstacle.w) return true;
+    else return false;
+}
 
 void game::free(SDL_Texture* mTexture)
-    {
+{
 	//Free texture if it exists
 	if( mTexture != NULL )
         {
@@ -275,25 +269,26 @@ void game::free(SDL_Texture* mTexture)
 		back_ground_width = 0;
 		back_ground_height = 0;
         }
-    }
+}
 
-    void game::quit()
+void game::quit()
+{
+    for(int i = 0; i < 3; i++)
     {
-        for(int i = 0; i < 3; i++){
-            free(animation[i]);
-        }
-        Mix_FreeChunk(jump);
-        jump = NULL;
-        Mix_FreeChunk(collided);
-        collided = NULL;
-        free(bg_texture);
-        free(dino_texture);
-        free(catus_texture);
-        free(bg_starting_tex);
-        free(bg_reset_tex);
-        free(text_texture);
-        free(text_texture2);
-        gFont = NULL;
-        quitSDL(window, renderer);
+        free(animation[i]);
     }
+    Mix_FreeChunk(jump);
+    jump = NULL;
+    Mix_FreeChunk(collided);
+    collided = NULL;
+    free(bg_texture);
+    free(dino_texture);
+    free(catus_texture);
+    free(bg_starting_tex);
+    free(bg_reset_tex);
+    free(text_texture);
+    free(text_texture2);
+    gFont = NULL;
+    quitSDL(window, renderer);
+}
 

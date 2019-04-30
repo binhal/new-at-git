@@ -105,3 +105,58 @@
 	<vector>
 	<SDL.h>
 
+1556283319 source:c:\users\binh fantasia\desktop\git_exercise\project\run\game.cpp
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	"game.h"
+	<vector>
+
+1490343497 c:\users\binh fantasia\desktop\git_exercise\project\run\sdl_utils.h
+	<iostream>
+	<SDL.h>
+
+1556283282 c:\users\binh fantasia\desktop\git_exercise\project\run\game.h
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	"Obstacle.h"
+	<fstream>
+
+1556635141 c:\users\binh fantasia\desktop\git_exercise\project\run\obstacle.h
+	<vector>
+	<SDL.h>
+
+1556201100 source:c:\users\binh fantasia\desktop\git_exercise\project\run\obstacle.cpp
+	"Obstacle.h"
+
+1556113020 source:c:\users\binh fantasia\desktop\git_exercise\project\run\run.cpp
+	<iostream>
+	<SDL.h>
+	"SDL_utils.h"
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<sstream>
+	<chrono>
+	<time.h>
+	<SDL_mixer.h>
+	"game.h"
+
+1555590496 source:c:\users\binh fantasia\desktop\git_exercise\project\run\sdl_utils.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+

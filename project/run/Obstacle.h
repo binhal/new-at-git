@@ -10,7 +10,7 @@ public:
 
     Obstacle()
     {
-        obstacleRect = new SDL_Rect;
+        obstacleRect = new SDL_Rect;;
         obstacleRect->h = 50;
     obstacleRect->y = 600 / 2 + 80 + 80 - obstacleRect->h ;
     obstacleRect->w = 40;

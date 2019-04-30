@@ -8,6 +8,7 @@
 #include<chrono>
 #include<time.h>
 #include"Obstacle.h"
+#include<fstream>
 using namespace std;
 
 
@@ -15,6 +16,8 @@ using namespace std;
 class game
 {
 private:
+
+    int best_score = 0;
     int rand_num = 100;
     int frame = 0;
     vector<Obstacle* > catus;
